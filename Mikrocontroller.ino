@@ -23,40 +23,37 @@ void setup()
 void loop() {
     if (Serial.available() > 0) {
         String input = Serial.readStringUntil('\n');
-        int term1, term2;
-        char operation;
-        sscanf(input.c_str(), "%d %c %d", &term1, &operation, &term2);
-
-        int result = 0;
-        bool validOperation = true;
-        switch (operation) {
-        case '+':
-            result = term1 + term2;
-            break;
-        case '-':
-            result = term1 - term2;
-            break;
-        case '*':
-            result = term1 * term2;
-            break;
-        case '/':
-            if (term2 != 0) {
-                result = term1 / term2;
-            }
-            else {
-                Serial.println("Fehler: Division durch Null");
-                validOperation = false;
-            }
-            break;
-        default:
-            Serial.println("Fehler: Ungültige Operation");
-            validOperation = false;
-        }
-
-        if (validOperation) {
-            Serial.println(result);
-        }
+        String output = perform_calculation(input);
+        Serial.println(output);
     }
 }
 
-    
+String perform_calculation(String input) {
+    char op;
+    int num1, num2, result;
+    sscanf(input.c_str(), "%d %c %d", &num1, &op, &num2);
+
+    switch (op) {
+    case '+':
+        result = num1 + num2;
+        break;
+    case '-':
+        result = num1 - num2;
+        break;
+    case '*':
+        result = num1 * num2;
+        break;
+    case '/':
+        if (num2 != 0) {
+            result = num1 / num2;
+        }
+        else {
+            return "Error: Division by zero";
+        }
+        break;
+    default:
+        return "Error: Invalid operation";
+    }
+
+    return "Result: " + String(result);
+}
