@@ -15,7 +15,6 @@ void setup()
 {
     // Serielle Kommunikation initialisieren
     Serial.begin(baudRate);
-
 }
 
 // Add the main program code into the continuous loop() function

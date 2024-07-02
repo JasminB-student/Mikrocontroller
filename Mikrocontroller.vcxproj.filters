@@ -16,9 +16,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mikrocontroller.ino" />
+    <ClCompile Include="PC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Mikrocontroller.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
