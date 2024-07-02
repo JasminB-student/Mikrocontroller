@@ -30,8 +30,19 @@ int main() {
     std::cout << "Enter calculation (e.g., 12 + 34): ";
     std::getline(std::cin, request);
 
+    // Öffnet die Datei für die Speicherung
+    std::ofstream log_file("communication_log.txt", std::ios::app);
+    if (!log_file.is_open()) {
+        std::cerr << "Failed to open log file" << std::endl;
+        return 1;
+    }
+
     send_calculation_request(port, request);
     std::string response = receive_calculation_response(port);
+
+    // Speichert die Kommunikation in der Datei
+    log_file << "Request: " << request << std::endl;
+    log_file << "Response: " << response << std::endl;
 
     std::cout << "Response from Arduino: " << response << std::endl;
 
