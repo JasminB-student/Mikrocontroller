@@ -10,15 +10,13 @@
 const int baudRate = 9600;
 
 
-// The setup() function runs once each time the micro-controller starts
-void setup()
-{
-    // Serielle Kommunikation initialisieren
+// runs once each time the micro-controller starts
+void setup() {
+    // initialize serial communication
     Serial.begin(baudRate);
 }
 
-// Add the main program code into the continuous loop() function
-
+// reads and runs the existing input and sends the result to the PC
 void loop() {
     if (Serial.available() > 0) {
         String input = Serial.readStringUntil('\n');
@@ -27,6 +25,7 @@ void loop() {
     }
 }
 
+// performs the calculation based on the input
 String perform_calculation(String input) {
     char op;
     int num1, num2, result;
